@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transection Area</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="tran">Transection Area</h2>
+        <div class="row area">
+            <div class="col-md-4" >
+                <div id="deposit">
+                    <h4>Deposit</h4>
+                    <h2>$<span id="currentDepositAmount">0</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div id="withdraw">
+                    <h4>Withdraw</h4>
+                    <h2>$ <span id="withdrawAmount">0</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div id="balance">
+                    <h4>Balance</h4>
+                    <h2>$<span id="currentBalance">0</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="action-area">
+            <div class="col-md-6">
+                <h3>Deposit</h3>
+                <input type="number" id="amountDeposit" class="form-control" placeholder="$ the amount you want to withdraw">
+                <br>
+                <button class="btn btn-primary" id="addDeposit">Deposit</button>
+            </div>
+            <div class="col-md-6">
+                <h3>Withdraw</h3>
+                <input type="number" id="amountWithdraw" class="form-control" placeholder="$ the amount you want to withdraw">
+                <br>
+                <button class="btn btn-primary" id="minWithdraw">withdraw</button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+            alert("Wellcome to Your own Wallet ")
+            var ash =prompt("your current balance should be")
+            document.getElementById("currentBalance").innerText = ash;
+             var balance =document.getElementById("currentBalance").innerText;
+            balance=parseFloat(balance);
+                // amountdeposit declaretion
+                var amountDeposit =document.getElementById("addDeposit");
+               
+                
+                // click function
+                amountDeposit.addEventListener("click",function(){
+                var amountDepo=document.getElementById("amountDeposit").value;
+                amountDepo =parseFloat(amountDepo);
+                document.getElementById("amountDeposit").value="";
+                if(Number.isInteger(amountDepo)){
+                    var currentAmount =document.getElementById("currentDepositAmount").innerText;
+                currentAmount= parseFloat(currentAmount);
+                var totalDeposit = currentAmount+amountDepo;
+                // deposit value update
+                document.getElementById("currentDepositAmount").innerText=totalDeposit;
+              
+                //    balance update
+                balance=balance+amountDepo;
+                document.getElementById("currentBalance").innerText=balance;
+                }
+                else{
+                    alert("Please input valid amount as well as not more than your balance")
+
+                }
+                
+                
+
+        })
+        
+        document.getElementById("minWithdraw").addEventListener("click",function(){
+            // withdrawAmount from input
+            var withdrawR=document.getElementById("amountWithdraw");
+            withdrawR=withdrawR.value;
+            var withdrawRnum=parseFloat(withdrawR);
+            document.getElementById("amountWithdraw").value="";
+            if((withdrawRnum<balance)&&(Number.isInteger(withdrawRnum))){
+              
+                 // withdraw amount from h4
+            var withdrawAmount=document.getElementById("withdrawAmount");
+            withdrawAmount= withdrawAmount.innerText;
+            var currentWithdrawNumber=parseFloat(withdrawAmount);
+            // amount update to h4
+
+            var withdrawH4 =currentWithdrawNumber+withdrawRnum
+            document.getElementById("withdrawAmount").innerText=withdrawH4
+
+            // want to minus from current balance
+            balance=balance-withdrawRnum;
+            document.getElementById("currentBalance").innerText=balance
+            }
+            else{
+                
+                alert("Please input valid amount as well as not more than your balance")
+           
+
+            }
+
+        })
+
+         
+
+
+   
+
+    </script>
+
+</body>
+</html>
